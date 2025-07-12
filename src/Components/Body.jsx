@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
+import RestraMenu from "./RestraMenu";
+
+
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -10,14 +13,19 @@ const Body = () => {
   // Fetch data on mount
   useEffect(() => {
     fetchRestaurants();
-  }, []);
+    // console.log("useEffect called");
+  },[]);
   const fetchRestaurants = async () => {
     try {
       const response = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.9615398&lng=79.2961468&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
-      const json = await response.json();
+
+
+
       // console.log(response);
+      const json = await response.json();
+      // console.log(json);
       // Safe access to restaurants
       const restaurantList =
         json?.data?.cards?.find(
@@ -114,7 +122,7 @@ const Body = () => {
         ) : (
           //here we can also add shimmer UI (i.e conditional rendering)
           listOfRestaurants.map((rest) => (
-            <RestaurantCard key={rest.info.id} restdata={rest} />
+            <RestaurantCard key={rest.info.id} restdata={rest} onClick={()=>{<RestraMenu/>}}/>
           ))
         )}
       </div>

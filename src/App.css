@@ -1,6 +1,10 @@
+*{
+  overflow-x: hidden;
+}
 .header {
   font-family: sans-serif;
   display: flex;
+  width: 100vw;
   /* justify-content: space-around;
    */
   justify-content: space-between;
@@ -53,6 +57,7 @@
   color: #7e322d;
   font-size: large;
   margin-left: 50px;
+  list-style-type: none;
 }
 
 .body {
